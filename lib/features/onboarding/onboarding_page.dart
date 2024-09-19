@@ -11,6 +11,10 @@ class OnboardingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final height = size.height;
+    final width = size.width;
+
     return Container(
       decoration: const BoxDecoration(
         gradient: LinearGradient(
@@ -29,11 +33,10 @@ class OnboardingPage extends StatelessWidget {
               child: Stack(
                 children: [
                   Positioned(
-                    top: 103,
-                    left: 42,
+                    top: height * 0.1,
+                    left: width * 0.1,
                     child: SizedBox(
-                      width: 150,
-                      height: 150,
+                      width: width * 0.35,
                       child: Image.asset(
                         AppImages.image1,
                         fit: BoxFit.contain,
@@ -41,11 +44,10 @@ class OnboardingPage extends StatelessWidget {
                     ),
                   ),
                   Positioned(
-                    top: 205,
-                    right: 13,
+                    top: height * 0.21,
+                    right: width * 0.03,
                     child: SizedBox(
-                      width: 150,
-                      height: 150,
+                      width: width * 0.35,
                       child: Image.asset(
                         AppImages.image2,
                         fit: BoxFit.contain,
@@ -53,11 +55,10 @@ class OnboardingPage extends StatelessWidget {
                     ),
                   ),
                   Positioned(
-                    top: 300,
-                    left: 42,
+                    top: height * 0.33,
+                    left: width * 0.1,
                     child: SizedBox(
-                      width: 150,
-                      height: 159,
+                      width: width * 0.35,
                       child: Image.asset(
                         AppImages.image3,
                         fit: BoxFit.contain,
@@ -65,11 +66,10 @@ class OnboardingPage extends StatelessWidget {
                     ),
                   ),
                   Positioned(
-                    top: 405,
-                    right: 13,
+                    top: height * 0.45,
+                    right: width * 0.03,
                     child: SizedBox(
-                      width: 150,
-                      height: 150,
+                      width: width * 0.35,
                       child: Image.asset(
                         AppImages.image4,
                         fit: BoxFit.contain,
@@ -82,36 +82,44 @@ class OnboardingPage extends StatelessWidget {
             Expanded(
               flex: 1,
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                padding: EdgeInsets.symmetric(horizontal: width * 0.07),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SizedBox(
-                      width: 274,
-                      height: 48,
-                      child: Text(
-                        'My weather app',
-                        style: AppTypography.sp32w600
-                            .copyWith(color: AppColors.white),
-                      ),
+                    Text(
+                      'My weather app',
+                      style: AppTypography.sp32w600
+                          .copyWith(color: AppColors.white),
                     ),
-                    const SizedBox(height: 9),
-                    SizedBox(
-                      width: 274,
-                      height: 48,
-                      child: Text(
-                        'Check Live weather updates all over the world with just one tap',
-                        style: AppTypography.sp16w400
-                            .copyWith(color: AppColors.white),
-                      ),
+                    SizedBox(height: height * 0.01),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Check Live weather updates all',
+                          style: AppTypography.sp16w400
+                              .copyWith(color: AppColors.white),
+                        ),
+                        Text(
+                          'over the world with just one tap',
+                          style: AppTypography.sp16w400
+                              .copyWith(color: AppColors.white),
+                        ),
+                      ],
                     ),
                     const Spacer(),
                     SizedBox(
-                      width: 364,
-                      height: 98,
-                      child: InkWell(
-                        onTap: () {
+                      width: double.infinity,
+                      height: height * 0.11,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: AppColors.lightPurple,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(25.0),
+                          ),
+                        ),
+                        onPressed: () {
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
@@ -121,22 +129,14 @@ class OnboardingPage extends StatelessWidget {
                             ),
                           );
                         },
-                        child: Ink(
-                          decoration: BoxDecoration(
-                            color: AppColors.lightPurple,
-                            borderRadius: BorderRadius.circular(25.0),
-                          ),
-                          child: Center(
-                            child: Text(
-                              'Get started',
-                              style: AppTypography.sp32w600
-                                  .copyWith(color: AppColors.white),
-                            ),
-                          ),
+                        child: Text(
+                          'Get started',
+                          style: AppTypography.sp32w600
+                              .copyWith(color: AppColors.white),
                         ),
                       ),
                     ),
-                    const SizedBox(height: 50),
+                    SizedBox(height: height * 0.05),
                   ],
                 ),
               ),
